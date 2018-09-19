@@ -158,6 +158,13 @@ function CheckCollisions(en_id) -- для каждого коллайдера к
 							} -- объект с информацией о коллизии
 							if not (en_collaider == "position") then
 								table.insert(en.collisions, collision)
+								collision = {
+									target = en,
+									t_collaider = en_collaider,
+									e_collaider = target_collaider,
+									info = result
+								} -- объект с информацией о коллизии
+								table.insert(target.collisions, collision)
 							end
 						end
 					end

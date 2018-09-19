@@ -8,7 +8,7 @@ love.math.setRandomSeed(love.timer.getTime())
 
 function love.load()
 	CreateDataList()
-	loading_list = {"4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4","4", "2"}
+	loading_list = {"4", "2"}
 	LoadingBeforeBattle()
 end 
 
@@ -42,10 +42,19 @@ end
 function love.draw()
 	for key, val in pairs(entity_list) do
 		DrawEntity(val)
-		love.graphics.print(#val.collisions, 20, 20 * key)
+
+		--| System params debug |--
+		fps = love.timer.getFPS( )
+		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 5)
+		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 5)
+		love.graphics.print("Objects: "..tostring(#entity_list), 10, 20)
+
+		--| Players params debug |--
+		wwidth, wheight, wflags = love.window.getMode( )
+		love.graphics.print("Life: "..tostring(entity_list[1].life), 10, wheight-20)
+		
 	end
-		love.graphics.print("Current FPS: "..tostring(love.timer.getFPS( )), 10, 10)
-		love.graphics.print(delta_time, 70, 20)
-		love.graphics.print("Objects: "..tostring(#entity_list), 90, 10)
+
+		love.graphics.print(delta_time, 10, 35)
 end 
 

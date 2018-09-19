@@ -66,9 +66,12 @@ function LoadEntity(id) -- функция парсинга кода dat файл
 		local head = string.match(dat, "<head>(.*)</head>")
 		if not (head == nil) then
 			en.name = string.match(head, "name: ([%w_% ]+)")
+			en.authorname = string.match(head, "authornamename: ([%w_% ]+)")
 			en.type = string.match(head, "type: ([%w]+)")
-			en.weight = Get(string.match(head, "weight: ([%d]+)"))
-			en.physic = Get(string.match(head, "physic: ([%w]+)"))
+			en.life = Get(string.match(head, "life: ([%d]+)"))
+			en.lifemax = Get(string.match(head, "lifemax: ([%d]+)"))
+			--en.weight = Get(string.match(head, "weight: ([%d]+)"))
+			--en.physic = Get(string.match(head, "physic: ([%w]+)"))
 			
 			if(en.physic == "true") then 
 				en.physic = true
@@ -162,18 +165,24 @@ function LoadEntity(id) -- функция парсинга кода dat файл
 
 		--| Загрузка системных значений |--
 		
-		en.x = math.random(30, 400)
-		en.y = 100
-		en.z = 0
-		en.hp = en.max_hp
+		en.x = math.random(30.0, 400.0)
+		en.y = 100.0
+		en.z = 0.0
+		en.life = en.max_hp
 		en.facing = 1
 		en.frame = 1
-		en.velocity_x = 0
-		en.velocity_y = 0
-		en.velocity_z = 0
+		en.velocity_x = 0.0
+		en.velocity_y = 0.0
+		en.velocity_z = 0.0
 		en.in_air = false
 		en.collisions = {}
 		en.test = false
+
+		--| Инициализация стейта,таймера |--
+		en.stateno = 5900
+		en.prevstateno = nil
+		en.time = 0
+		
 
 	end
 
